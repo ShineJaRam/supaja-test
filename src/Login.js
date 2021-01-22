@@ -12,13 +12,26 @@ const Login = () => {
     setId(e.target.value);
     setIdCheck(true);
 
-    if (e.target.value.includes("@" && ".com")) {
+    if (e.target.value.includes("@" && ".")) {
       setIdCheck(false);
+    }
+  };
+
+  const passID = (e) => {
+    if (e.key === "Enter") {
+      LoginFunction();
     }
   };
 
   const inputPW = (e) => {
     setPw(e.target.value);
+  };
+
+  const passPW = (e) => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      LoginFunction();
+    }
   };
 
   const LoginFunction = () => {
@@ -47,14 +60,14 @@ const Login = () => {
         </div>
         <InputForm>
           <span className="idPw">이메일 주소</span>
-          <input onChange={inputID} type="text" />
+          <input onChange={inputID} onKeyDown={passID} type="text" />
           <Validation idCheck={idCheck}>
             올바른 양식을 기입해 주십시오.
           </Validation>
         </InputForm>
         <InputForm>
           <span className="idPw">비밀번호</span>
-          <input onChange={inputPW} type="password" />
+          <input onChange={inputPW} onKeyDown={passPW} type="password" />
         </InputForm>
         <button onClick={LoginFunction} className="loginButton">
           로그인
